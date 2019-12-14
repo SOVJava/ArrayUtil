@@ -175,7 +175,7 @@ public class Program {
         System.out.println(uniq + "unique1");
 
         //frequent
-        int[] fre = {1,2,3,4,5,1,2,2,3,4,5};
+        int[] fre = {1,2,3,4,5,1,2,2,3,4,4,5};
         int freq1 = ArrayUtil.frequent(fre);
         System.out.println(freq1 + " frequent");
         int[] freq2 = ArrayUtil.frequent2(fre);

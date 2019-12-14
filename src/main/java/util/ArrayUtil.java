@@ -672,7 +672,8 @@ public class ArrayUtil {
     }
 
     //Вернуть все элементы, удовлетворяющие условиям задачи, используя дополнительный массив
-    public static int[] frequent2(int[] arr) {  //вернуть элементы с маскимальным числом повторов
+    //вернуть элементы с маскимальным числом повторов
+    public static int[] frequent2(int[] arr) {
         int num = frequent(arr);
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
@@ -680,9 +681,28 @@ public class ArrayUtil {
                 count++;
             }
         }
-        int[] res = new int[count];
-        for (int i = 0; i < count; i++) {
-            res[i] = num;
+        int countArr = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int countI = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i]==arr[j])
+                    countI++;
+            }
+            if (count==countI)
+                countArr++;
+        }
+        int[] res = new int[countArr];
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int countI = 0;
+            for (int j = 0; j <arr.length ; j++) {
+                if (arr[i] == arr[j])
+                    countI++;
+            }
+            if (count==countI) {
+                res[index]=arr[i];
+                index++;
+            }
         }
         return res;
     }
@@ -691,8 +711,18 @@ public class ArrayUtil {
     public static ArrayList<Integer> frequent3(int[] arr) {
         ArrayList res = new ArrayList();
         int num = frequent(arr);
+        int countNum = 0;
         for (int i = 0; i < arr.length; i++) {
             if (num == arr[i])
+                countNum++;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            int countI = 0;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[i]==arr[j])
+                    countI++;
+            }
+            if (countI==countNum)
                 res.add(arr[i]);
         }
         return res;
