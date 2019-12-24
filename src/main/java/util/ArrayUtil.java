@@ -525,18 +525,12 @@ public class ArrayUtil {
     }
 
     //использовать ArrayList для выполнения операции вставки
-    public static Integer[] insert2(int[] arr, int k, int c) {
+    public static Integer[] insert2(Integer[] arr, int k, int c) {  //добавить элементы в лист из массива и для вставки использовать вннутренний метод листа
         if (k > arr.length - 1)
             return null;
-        ArrayList<Integer> mass = new ArrayList();
-        for (int i = 0, j = i - 1; i < arr.length + 1; i++, j++) {
-            if (i == k)
-                mass.add(k, c);
-            else if (i > k)
-                mass.add(i, arr[j]);
-            else mass.add(i, arr[i]);
-        }
-        return mass.toArray(new Integer[mass.size()]);
+        ArrayList<Integer> res = new ArrayList<>(Arrays.asList(arr));
+        res.add(k,c);
+        return res.toArray(new Integer[0]);
     }
 
     /**
@@ -740,6 +734,339 @@ public class ArrayUtil {
         }
         return null;
     }
+    //Модернизировать программу таким образом,  чтобы она вернула индексы всех вхождений числа key в массиве.
+    //-использовать массив для хранения элементов
+    public static int[] search1(int[] arr, int key) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key)
+                count++;
+        }
+        int[] res = new int[count];
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key) {
+                res[index] = i;
+                index++;
+            }
+        }
+        return res;
+    }
+
+    //-использовать ArrayList для накопления элементов
+    public static ArrayList<Integer> search2(int[] arr, int key) {
+        ArrayList<Integer> res = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if(arr[i] == key)
+                res.add(i);
+        }
+        return res;
+    }
+
+    /**
+     * equals
+     * Даны два массива целых чисел. Сравнить их на равенство.
+     * Под равенством двух массивов понимать их тождественное равенство, то есть два массива с
+     * одинаковыми длинами, одинаковыми элементами, но разным порядком этих элементов считаются разными
+     */
+    public static boolean equals (int[] arr1, int[] arr2){
+        if (arr1.length != arr2.length)
+            return false;
+        for (int i = 0; i < arr1.length; i++) {
+            if (arr1[i] != arr2[i])
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * equalsIgnoreCase
+     * Даны два массива целых чисел. Сравнить их на равенство по содержанию,
+     * то есть не учитывая порядок этих элементов
+     */
+    public static boolean equalsIgnoreCase (int[] arr1, int[] arr2){
+        if (arr1.length != arr2.length)
+            return false;
+        int sum1 = 0;
+        int sum2 = 0;
+        for (int i = 0; i < arr1.length; i++) {
+            sum1=+arr1[i];
+            sum2=+arr2[i];
+        }
+        if (sum1 != sum2)
+            return false;
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr2.length; j++) {
+                if (arr1[i] == arr2[j])
+                    break;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * copyOf
+     * Дан массив, сделать его копию
+     * Указание:
+     * Метод должен принимать на вход 2 параметра: исходный массив, который надо скопировать и длину
+     * нового массива. Если длина исходного массива больше длины нового массива, то копируется только
+     * часть исходного массива, если длина исходного массива меньше длины нового массива, то в новый
+     * массив исходный массив копируется полностью, а оставшаяся незаполненная часть записывается нулями,
+     * если же размер нового массива совпадает с размером исходного, то в новый массив копируется полностью исходный
+     */
+    public static int[] copyOf (int[] arr, int x){
+        int[] res = new int[x];
+        if (arr.length >= x){
+            for (int i = 0; i < res.length; i++) {
+                res[i] = arr[i];
+            }
+        }
+        else {
+            for (int i = 0; i < res.length; i++) {
+                if (i>arr.length-1) {
+                    res[i] = 0;
+                } else {
+                    res[i] = arr[i];
+                }
+            }
+        }
+        return res;
+    }
+
+    /**
+     * isOrder
+     * Дан массив целых чисел. Определить, является ли он упорядоченным
+     */
+    public static boolean isOrder (int[] arr){
+        boolean has = false;
+        if (arr.length>0 && arr[0]<=arr[arr.length-1]) {
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] <= arr[i + 1]) {
+                    has = true;
+                } else {
+                    has = false;
+                    break;
+                }
+            }
+        } else {
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] >= arr[i + 1]) {
+                    has = true;
+                } else {
+                    has = false;
+                    break;
+                }
+            }
+        }
+        return has;
+    }
+
+    /**
+     * isPrime
+     * Проверка простое число или нет
+     */
+    public static boolean isPrime(int x){
+        int count = 0;
+        for (int i = 1; i <= x; i++) {
+            if ((x%i)==0)
+                count++;
+        }
+        return  (count == 2);
+    }
+
+    /**
+     * fillPrimeRandom
+     * Дан массив. Заполнить исходный массив целыми случайными простыми числами
+     */
+    public static void fillPrimeRandom (int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = ((int)(Math.random()*1000)); j >= 2; j--) {
+                if (isPrime(j)){
+                    arr[i] = j;
+                    break;
+                }
+            }
+        }
+    }
+
+    /**
+     * towards
+     * Дан массив вещественных чисел. Сформировать его строковое представление в формате JSON
+     * следующем порядке: первое число, последнее, второе, предпоследнее и так далее все числа
+     */
+    //Пример:
+    //Входные данные:  1 2 3 4 5
+    //Выходные данные:  [1, 5, 2, 4, 3]
+    public static String towards(int... x){
+        String res = "[";
+        boolean has = false;
+        for (int i = 0, a = 0, k = 0; i < x.length; i++) {
+            if (has)
+                res += ", ";
+            if (isEven(i)) {
+                res += x[k];
+                k++;
+            }
+            else {
+                res += x[x.length-1-a];
+                a++;
+            }
+            has = true;
+        }
+        return res+"]";
+    }
+
+    /**
+     * equalItems
+     * Дан массив. Найдите элементы, равные друг другу
+     */
+    //использовать массив для хранения элементов
+    public static int[] equalItems(int[] arr){
+        int length = 0;
+        int[] res = new int[arr.length-1];
+        for (int i = 0; i < arr.length; i++) {
+            lab:
+            {
+                int count = 0;
+                for (int j = 0; j < arr.length; j++) {
+                    if (arr[i] == arr[j])
+                        count++;
+                }
+                for (int j = 0; j < res.length; j++) {
+                    if (arr[i] == res[j])
+                        break lab;
+                }
+                if (count > 1) {
+                    res[length] = arr[i];
+                    length++;
+                }
+            }
+
+        }
+        return Arrays.copyOf(res,length) ;
+    }
+
+    //использовать ArrayList для накопления элементов
+    public static ArrayList<Integer> equalItems1(int[] arr){
+        ArrayList res = new ArrayList();
+        for (int i = 0; i < arr.length-1; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i] == arr[j])
+                    res.add(arr[i]);
+            }
+        }
+        for (int i = 0; i < res.size()-1; i++) {
+            for (int j = i+1; j < res.size(); j++) {
+                if (res.get(i) == res.get(j))
+                    res.remove(j);
+            }
+        }
+        return res;
+    }
+
+    /**
+     * countDifferent
+     * Дан массив целых чисел. Посчитайте, сколько в нем различных элементов, не изменяя самого массива
+     */
+    public static int countDifferent1 (int[] arr){
+        int x = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[i]==arr[j]){
+                    count++;
+                }
+            }
+            if (count>1)
+                x--;
+        }
+        return x;
+    }
+
+    /**
+     * equalsIgnoreCase
+     * Даны два массива целых чисел. Сравнить их на равенство по содержанию, то есть не учитывая порядок этих элементов
+     */
+    public static boolean equalsIgnoreCase1 (int[] arr1, int[] arr2){
+        boolean has = true;
+        for (int i = 0; i < arr1.length; i++) {
+            int count = 0;
+            for (int j = 0; j < arr2.length; j++) {
+                if (arr1[i]==arr2[j])
+                    count++;
+            }
+            if (count<1)
+                return false;
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            int count = 0;
+            for (int j = 0; j < arr1.length; j++) {
+                if (arr2[i]==arr1[j])
+                    count++;
+            }
+            if (count<1)
+                return false;
+        }
+        return has;
+    }
+
+    /**
+     * countPassengersTime
+     * Для изучения пассажиропотока в метро было записано время входа и время выхода в метро каждого пассажира.
+     * На основании этих данных определите, сколько пассажиров было в метро в некоторый заданный момент времени T.
+     * <p>
+     * Программа получает на вход двумерный массив данных P из N строк – числа пассажиров за текущий день и двух
+     * столбцов, а так же время T. В первом столбце массива определяется время входа P(i, 1) и во втором – время
+     * выхода P(i, 2) каждого пассажира, где P(i,1)≤P(i,2). Время задается в минутах от начала работы метрополитена.
+     * <p>
+     * Вычислите одно значение: количество пассажиров в момент времени T. Если какой-то пассажир в момент T
+     * входит или выходит, то его тоже необходимо посчитать
+     */
+    public static int countPassengersTime(int[][] arr, int t) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i][0]<=t && t<=arr[i][1])
+                count++;
+        }
+        return count;
+    }
+
+    /**
+     * rushHour
+     * Дан массив целых чисел – количество пассажиров в метро за каждый час его работы и
+     * число k – продолжительность часа пик. Определить K подряд идущих часов работы метрополитена
+     * с максимальным суммарным числом пассажиров и вычислить суммарное число пассажиров за эти часы
+     */
+    public static int rushHour(int[] arr, int k){
+        if (k>arr.length)
+            return -1;
+        int max = 0;
+
+        for (int i = 0; i <= arr.length-k; i++) {
+            int sum = 0;
+            int count = 0;
+
+            for (int j = i; j < i+k; j++) {
+                sum += arr[j];
+                count++;
+                if (count == k){
+                    if (max<sum){
+                        max=sum;
+                    }
+                }
+            }
+
+        }
+
+
+        return max;
+    }
+
+    int[] arr = {3,4,5,6,5};
+
+
+
+
 
 
 }

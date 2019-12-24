@@ -128,7 +128,7 @@ public class Program {
         int[] indexInsertion = {1,1,0,-2,-3,-3,-3,-4,-4,-6,-10,-10};
         System.out.println(Arrays.toString(indexInsertion));
         int index = ArrayUtil.indexInsertion(indexInsertion,0);
-        System.out.println(index);
+        System.out.println(index);*/
 
         //delete
         int[] del ={1,2,3,3,4,5,6};
@@ -139,14 +139,15 @@ public class Program {
         System.out.println(Arrays.toString(resDel2));
         int[] arrSort = {5,65,4,3,2,3,4,5};
         Arrays.sort(arrSort);
-        System.out.println(Arrays.toString(arrSort));*/
+        System.out.println(Arrays.toString(arrSort));
 
         //insert
         int[] ins = {1,2,3,4,5,6,7,8,9,10};
+        Integer[] insI = {1,2,3,4,5,6,7,8,9,10};
         int[] ins1 = ArrayUtil.insert1(ins,3,20);
         System.out.println(Arrays.toString(ins1));
-        Integer[] ins2 = ArrayUtil.insert2(ins,3,20);
-        System.out.println(Arrays.toString(ins2));
+        Integer[] ins2 = ArrayUtil.insert2(insI,3,20);
+        System.out.println(Arrays.toString(ins2) + "test");
 
         //shift
         int[] shi1 = {1,2,3,4,5};
@@ -161,7 +162,7 @@ public class Program {
         //countEqualPairs
         int[] cop = {1,1,1,1};
         int countEqualPairs = ArrayUtil.countEqualPairs(cop);
-        System.out.println(countEqualPairs);
+        System.out.println(countEqualPairs + " countEqualPairs");
 
         //countUnique
         int[] uni = {1,2,3,4,2,1,3,10};
@@ -184,10 +185,78 @@ public class Program {
         System.out.println(freq3);
 
         //search
-        int[] sea = {1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9};
+        int[] sea = {1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,4};
         Integer sea1 = ArrayUtil.search(sea,4);
         System.out.println(sea1);
+        int[] search1 = ArrayUtil.search1(sea,4);
+        System.out.println(Arrays.toString(search1));
+        ArrayList search2 = ArrayUtil.search2(sea,4);
+        System.out.println(search2);
 
+        //equals
+        int[] array1 = {1,2,4,3,5,6,7,8,9,10};
+        int[] array2 = {1,2,3,4,5,6,7,8,9,10};
+        boolean equals = ArrayUtil.equals(array1,array2);
+        System.out.println(equals);
+        boolean equalsIgnoreCase = ArrayUtil.equalsIgnoreCase(array1,array2);
+        System.out.println(equalsIgnoreCase);
+
+        //copyOf
+        int[] copyOf1 = {1,2,3,4,5};
+        int[] copyOf2 = ArrayUtil.copyOf(copyOf1,3);
+        int[] copyOf3 = ArrayUtil.copyOf(copyOf1,5);
+        int[] copyOf4 = ArrayUtil.copyOf(copyOf1,7);
+        System.out.println(Arrays.toString(copyOf2));
+        System.out.println(Arrays.toString(copyOf3));
+        System.out.println(Arrays.toString(copyOf4));
+
+        //isOrder
+        int[] isOrder1 = {1,2,3,4,5,5};
+        int[] isOrder2 = {5,4,3,2,1,1};
+        int[] isOrder3 = {1,2,1,2,1,2};
+        boolean isOrder4 = ArrayUtil.isOrder(isOrder1);
+        boolean isOrder5 = ArrayUtil.isOrder(isOrder2);
+        boolean isOrder6 = ArrayUtil.isOrder(isOrder3);
+        System.out.println(isOrder4 + " " + isOrder5 + " " + isOrder6);
+
+        //fillPrimeRandom
+        int[] fillPrimeRandom = {1,2,3,4,5,6,7,8,9,10};
+        ArrayUtil.fillPrimeRandom(fillPrimeRandom);
+        System.out.println(Arrays.toString(fillPrimeRandom));
+
+        //towards
+        String towards = ArrayUtil.towards(1,2,3,4,5,6,7,8,9,10);
+        System.out.println(towards + "towards");
+
+        //equalItems
+        int[] equalItems = {1,2,3,1,1,2,4,4};
+        int[] equalItems1 = ArrayUtil.equalItems(equalItems);
+        System.out.println(Arrays.toString(equalItems1) + "equalItems");
+        ArrayList equalItems2 = ArrayUtil.equalItems1(equalItems);
+        System.out.println(equalItems2);
+
+        //countDifferent
+        int[] countDifferent = {6,1,2,3,4,1,2,3,4,1,5};
+        int countDifferent1 = ArrayUtil.countDifferent1(countDifferent);
+        System.out.println(countDifferent1);
+
+        //equalsIgnoreCase
+        int[] arr1 = {1,2,3,4,5};
+        int[] arr2 = {1,2,3,4,5,1,2,3,4};
+        int[] arr3 = {1,2,3,4,5,1,2,3,4,5,10};
+        boolean equalsIgnoreCaseA = ArrayUtil.equalsIgnoreCase1(arr1,arr2);
+        boolean equalsIgnoreCaseB = ArrayUtil.equalsIgnoreCase1(arr1,arr3);
+        System.out.println(equalsIgnoreCaseA + " " + equalsIgnoreCaseB);
+
+        //countPassengersTime
+        int[][] countPT = {{1,2},{1,3},{3,4},{1,5},{5,6}};
+        int resCPT = ArrayUtil.countPassengersTime(countPT, 3);
+        System.out.println(resCPT);
+
+        //rushHour
+        int[] rushH = {1,1,2,2,1};
+        int rushHour = ArrayUtil.rushHour(rushH, 2);
+        System.out.println(rushHour);
 
     }
 
