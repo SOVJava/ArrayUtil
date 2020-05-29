@@ -2,7 +2,6 @@ package program;
 
 import util.ArrayUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Program {
@@ -128,7 +127,7 @@ public class Program {
         int[] indexInsertion = {1,1,0,-2,-3,-3,-3,-4,-4,-6,-10,-10};
         System.out.println(Arrays.toString(indexInsertion));
         int index = ArrayUtil.indexInsertion(indexInsertion,0);
-        System.out.println(index);*/
+        System.out.println(index);
 
         //delete
         int[] del ={1,2,3,3,4,5,6};
@@ -258,7 +257,90 @@ public class Program {
         int rushHour = ArrayUtil.rushHour(rushH, 2);
         System.out.println(rushHour);
 
-    }
+        //sort
+        Integer[] arrSort = {10, 5, 4, 7, 9, 2};
+        System.out.println(Arrays.toString(arrSort));
 
+        Arrays.sort(arrSort, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return Integer.compare(o1, o2);
+            }
+        });
+        System.out.println(Arrays.toString(arrSort));
+
+        //averagePoint
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Введите размер массива");
+        int n = sc.nextInt();
+        int[] averagePoint2 = new int[n];
+        for (int i = 0; i < averagePoint2.length; i++) {
+            averagePoint2[i] = sc.nextInt();
+        }
+
+        int averagePoint = ArrayUtil.averagePoint(averagePoint2);
+        System.out.println(averagePoint + " averagePoint");
+
+        //group
+        String[] group = {"aa", "b", "a", "bb", "aa", "bb", "bb","aa", "bb", "bb", "b"};
+        String[] resGroup = ArrayUtil.group(group);
+        System.out.println(Arrays.toString(resGroup));
+        ArrayList<String> resGroup1 = ArrayUtil.group1(group);
+        System.out.println(resGroup1);
+        ArrayList<ArrayList<String>> resGroup3 = ArrayUtil.group3(group);
+        System.out.println(resGroup3);*/
+
+        //debts
+        /*Scanner sc = new Scanner(System.in);
+        System.out.println("Введите количество джентельменов");
+        int n = sc.nextInt();
+        System.out.println("введите количество расписок");
+        int k = sc.nextInt();
+        int[][] debts = new int[k][3];
+        for (int i = 0; i <debts.length ; i++) {
+            for (int j = 0; j < 3; j++) {
+                debts[i][j] = sc.nextInt();
+            }
+        }
+        int[] resDebts = ArrayUtil.debts1(debts,n);
+        System.out.println(Arrays.toString(resDebts));
+
+        int[][] debts = {{1,2,10},{1,2,20},{1,3,20}};
+        int[] resDebts = ArrayUtil.debts1(debts,3);
+        System.out.println(Arrays.toString(resDebts));*/
+
+
+        /*//sort
+        Scanner sc = new Scanner(System.in);
+        System.out.println("длинна массива");
+        int n = sc.nextInt();
+        Integer[] arr = new Integer[n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        ArrayUtil.sort1(arr, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return Integer.compare(o1, o2);
+            }
+        });
+        System.out.println(Arrays.toString(arr));*/
+
+        /*//temperatureMinimum
+        int[][] temperatureMinimum = {{1,2,3,4,5},{2,3,4,5,1},{3,4,5,1,2},{4,5,1,2,3}};
+        int[] tmp = ArrayUtil.temperatureMinimum(temperatureMinimum);
+        System.out.println(Arrays.toString(tmp));
+
+        String[] group = {"aa", "b", "a", "bb", "aa", "bb", "bb","aa", "bb", "bb", "b", "ba"};
+        String[] res = ArrayUtil.group2(group);
+        System.out.println(Arrays.toString(res));*/
+
+        //countMaxLength
+        int[] arr = {10, 99, 108, 0, 1, 1000000, 1000000, 1000000};
+        int[] res = ArrayUtil.maxSize(arr);
+        System.out.println(Arrays.toString(res));
+        int[] res2 = ArrayUtil.maxSize2(arr);
+        System.out.println(Arrays.toString(res2));
+    }
 
 }

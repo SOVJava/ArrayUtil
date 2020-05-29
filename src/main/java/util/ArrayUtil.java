@@ -1,7 +1,6 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 public class ArrayUtil {
 
@@ -529,7 +528,7 @@ public class ArrayUtil {
         if (k > arr.length - 1)
             return null;
         ArrayList<Integer> res = new ArrayList<>(Arrays.asList(arr));
-        res.add(k,c);
+        res.add(k, c);
         return res.toArray(new Integer[0]);
     }
 
@@ -679,22 +678,22 @@ public class ArrayUtil {
         for (int i = 0; i < arr.length; i++) {
             int countI = 0;
             for (int j = 0; j < arr.length; j++) {
-                if (arr[i]==arr[j])
+                if (arr[i] == arr[j])
                     countI++;
             }
-            if (count==countI)
+            if (count == countI)
                 countArr++;
         }
         int[] res = new int[countArr];
         int index = 0;
         for (int i = 0; i < arr.length; i++) {
             int countI = 0;
-            for (int j = 0; j <arr.length ; j++) {
+            for (int j = 0; j < arr.length; j++) {
                 if (arr[i] == arr[j])
                     countI++;
             }
-            if (count==countI) {
-                res[index]=arr[i];
+            if (count == countI) {
+                res[index] = arr[i];
                 index++;
             }
         }
@@ -713,10 +712,10 @@ public class ArrayUtil {
         for (int i = 0; i < arr.length; i++) {
             int countI = 0;
             for (int j = 0; j < arr.length; j++) {
-                if (arr[i]==arr[j])
+                if (arr[i] == arr[j])
                     countI++;
             }
-            if (countI==countNum)
+            if (countI == countNum)
                 res.add(arr[i]);
         }
         return res;
@@ -734,6 +733,7 @@ public class ArrayUtil {
         }
         return null;
     }
+
     //Модернизировать программу таким образом,  чтобы она вернула индексы всех вхождений числа key в массиве.
     //-использовать массив для хранения элементов
     public static int[] search1(int[] arr, int key) {
@@ -757,7 +757,7 @@ public class ArrayUtil {
     public static ArrayList<Integer> search2(int[] arr, int key) {
         ArrayList<Integer> res = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i] == key)
+            if (arr[i] == key)
                 res.add(i);
         }
         return res;
@@ -769,7 +769,7 @@ public class ArrayUtil {
      * Под равенством двух массивов понимать их тождественное равенство, то есть два массива с
      * одинаковыми длинами, одинаковыми элементами, но разным порядком этих элементов считаются разными
      */
-    public static boolean equals (int[] arr1, int[] arr2){
+    public static boolean equals(int[] arr1, int[] arr2) {
         if (arr1.length != arr2.length)
             return false;
         for (int i = 0; i < arr1.length; i++) {
@@ -784,14 +784,14 @@ public class ArrayUtil {
      * Даны два массива целых чисел. Сравнить их на равенство по содержанию,
      * то есть не учитывая порядок этих элементов
      */
-    public static boolean equalsIgnoreCase (int[] arr1, int[] arr2){
+    public static boolean equalsIgnoreCase(int[] arr1, int[] arr2) {
         if (arr1.length != arr2.length)
             return false;
         int sum1 = 0;
         int sum2 = 0;
         for (int i = 0; i < arr1.length; i++) {
-            sum1=+arr1[i];
-            sum2=+arr2[i];
+            sum1 = +arr1[i];
+            sum2 = +arr2[i];
         }
         if (sum1 != sum2)
             return false;
@@ -814,16 +814,15 @@ public class ArrayUtil {
      * массив исходный массив копируется полностью, а оставшаяся незаполненная часть записывается нулями,
      * если же размер нового массива совпадает с размером исходного, то в новый массив копируется полностью исходный
      */
-    public static int[] copyOf (int[] arr, int x){
+    public static int[] copyOf(int[] arr, int x) {
         int[] res = new int[x];
-        if (arr.length >= x){
+        if (arr.length >= x) {
             for (int i = 0; i < res.length; i++) {
                 res[i] = arr[i];
             }
-        }
-        else {
+        } else {
             for (int i = 0; i < res.length; i++) {
-                if (i>arr.length-1) {
+                if (i > arr.length - 1) {
                     res[i] = 0;
                 } else {
                     res[i] = arr[i];
@@ -837,9 +836,9 @@ public class ArrayUtil {
      * isOrder
      * Дан массив целых чисел. Определить, является ли он упорядоченным
      */
-    public static boolean isOrder (int[] arr){
+    public static boolean isOrder(int[] arr) {
         boolean has = false;
-        if (arr.length>0 && arr[0]<=arr[arr.length-1]) {
+        if (arr.length > 0 && arr[0] <= arr[arr.length - 1]) {
             for (int i = 0; i < arr.length - 1; i++) {
                 if (arr[i] <= arr[i + 1]) {
                     has = true;
@@ -865,23 +864,23 @@ public class ArrayUtil {
      * isPrime
      * Проверка простое число или нет
      */
-    public static boolean isPrime(int x){
+    public static boolean isPrime(int x) {
         int count = 0;
         for (int i = 1; i <= x; i++) {
-            if ((x%i)==0)
+            if ((x % i) == 0)
                 count++;
         }
-        return  (count == 2);
+        return (count == 2);
     }
 
     /**
      * fillPrimeRandom
      * Дан массив. Заполнить исходный массив целыми случайными простыми числами
      */
-    public static void fillPrimeRandom (int[] arr){
+    public static void fillPrimeRandom(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            for (int j = ((int)(Math.random()*1000)); j >= 2; j--) {
-                if (isPrime(j)){
+            for (int j = ((int) (Math.random() * 1000)); j >= 2; j--) {
+                if (isPrime(j)) {
                     arr[i] = j;
                     break;
                 }
@@ -897,7 +896,7 @@ public class ArrayUtil {
     //Пример:
     //Входные данные:  1 2 3 4 5
     //Выходные данные:  [1, 5, 2, 4, 3]
-    public static String towards(int... x){
+    public static String towards(int... x) {
         String res = "[";
         boolean has = false;
         for (int i = 0, a = 0, k = 0; i < x.length; i++) {
@@ -906,14 +905,13 @@ public class ArrayUtil {
             if (isEven(i)) {
                 res += x[k];
                 k++;
-            }
-            else {
-                res += x[x.length-1-a];
+            } else {
+                res += x[x.length - 1 - a];
                 a++;
             }
             has = true;
         }
-        return res+"]";
+        return res + "]";
     }
 
     /**
@@ -921,9 +919,9 @@ public class ArrayUtil {
      * Дан массив. Найдите элементы, равные друг другу
      */
     //использовать массив для хранения элементов
-    public static int[] equalItems(int[] arr){
+    public static int[] equalItems(int[] arr) {
         int length = 0;
-        int[] res = new int[arr.length-1];
+        int[] res = new int[arr.length - 1];
         for (int i = 0; i < arr.length; i++) {
             lab:
             {
@@ -943,20 +941,20 @@ public class ArrayUtil {
             }
 
         }
-        return Arrays.copyOf(res,length) ;
+        return Arrays.copyOf(res, length);
     }
 
     //использовать ArrayList для накопления элементов
-    public static ArrayList<Integer> equalItems1(int[] arr){
+    public static ArrayList<Integer> equalItems1(int[] arr) {
         ArrayList res = new ArrayList();
-        for (int i = 0; i < arr.length-1; i++) {
-            for (int j = i+1; j < arr.length; j++) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i] == arr[j])
                     res.add(arr[i]);
             }
         }
-        for (int i = 0; i < res.size()-1; i++) {
-            for (int j = i+1; j < res.size(); j++) {
+        for (int i = 0; i < res.size() - 1; i++) {
+            for (int j = i + 1; j < res.size(); j++) {
                 if (res.get(i) == res.get(j))
                     res.remove(j);
             }
@@ -968,16 +966,16 @@ public class ArrayUtil {
      * countDifferent
      * Дан массив целых чисел. Посчитайте, сколько в нем различных элементов, не изменяя самого массива
      */
-    public static int countDifferent1 (int[] arr){
+    public static int countDifferent1(int[] arr) {
         int x = arr.length;
         for (int i = 0; i < arr.length; i++) {
             int count = 0;
             for (int j = i; j < arr.length; j++) {
-                if (arr[i]==arr[j]){
+                if (arr[i] == arr[j]) {
                     count++;
                 }
             }
-            if (count>1)
+            if (count > 1)
                 x--;
         }
         return x;
@@ -987,24 +985,24 @@ public class ArrayUtil {
      * equalsIgnoreCase
      * Даны два массива целых чисел. Сравнить их на равенство по содержанию, то есть не учитывая порядок этих элементов
      */
-    public static boolean equalsIgnoreCase1 (int[] arr1, int[] arr2){
+    public static boolean equalsIgnoreCase1(int[] arr1, int[] arr2) {
         boolean has = true;
         for (int i = 0; i < arr1.length; i++) {
             int count = 0;
             for (int j = 0; j < arr2.length; j++) {
-                if (arr1[i]==arr2[j])
+                if (arr1[i] == arr2[j])
                     count++;
             }
-            if (count<1)
+            if (count < 1)
                 return false;
         }
         for (int i = 0; i < arr2.length; i++) {
             int count = 0;
             for (int j = 0; j < arr1.length; j++) {
-                if (arr2[i]==arr1[j])
+                if (arr2[i] == arr1[j])
                     count++;
             }
-            if (count<1)
+            if (count < 1)
                 return false;
         }
         return has;
@@ -1025,7 +1023,7 @@ public class ArrayUtil {
     public static int countPassengersTime(int[][] arr, int t) {
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i][0]<=t && t<=arr[i][1])
+            if (arr[i][0] <= t && t <= arr[i][1])
                 count++;
         }
         return count;
@@ -1037,36 +1035,388 @@ public class ArrayUtil {
      * число k – продолжительность часа пик. Определить K подряд идущих часов работы метрополитена
      * с максимальным суммарным числом пассажиров и вычислить суммарное число пассажиров за эти часы
      */
-    public static int rushHour(int[] arr, int k){
-        if (k>arr.length)
+    public static int rushHour(int[] arr, int k) {
+        if (k > arr.length)
             return -1;
         int max = 0;
-
-        for (int i = 0; i <= arr.length-k; i++) {
+        for (int i = 0; i <= arr.length - k; i++) {
             int sum = 0;
-            int count = 0;
-
-            for (int j = i; j < i+k; j++) {
+            for (int j = i; j < i + k; j++) {
                 sum += arr[j];
-                count++;
-                if (count == k){
-                    if (max<sum){
-                        max=sum;
-                    }
-                }
             }
+            if (max < sum)
+                max = sum;
 
         }
-
-
         return max;
     }
 
-    int[] arr = {3,4,5,6,5};
+    /**
+     * Sort  (написать свой способ сортировки пузырьком)
+     * Дан массив целых чисел. Выполнить сортировку массива пузырьком и сортировкой отбором (линейная сортировка).
+     * Решение оформить 2 способами:
+     */
+    //Выполнить данные сортировки
+    public static void sort1(Integer[] arr, Comparator<Integer> cmp) {
+        for (int i = arr.length - 1; i >= 1; i--) {
+            for (int j = 0; j < i; j++) {
+                if (cmp.compare(arr[j], arr[j + 1]) > 0) {
+                    int buf = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = buf;
+                }
+            }
+        }
+    }
 
+    //Выполнить данные сортировки, принимая в качестве аргумента Comparator для сравнения элементов
+    public static void sort2(Integer[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    int buf = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = buf;
+                }
+            }
+        }
+    }
 
+    /**
+     * averagePoint
+     * Вводится следующая система вычисления среднего балла работоспособности разработчиков в компании
+     * «Сбербанк-Технологии»: вычисляется среднее арифметическое всех баллов, поставленных тимлидом за
+     * определенный период времени, и ставится ближайшая целая оценка, не превосходящая среднего арифметического.
+     * <p>
+     * При этом если у разработчика есть «двойка», а следующий за ней балл – выше «двойки», то двойка
+     * считается отработанной, и при вычислении среднего арифметического не учитывается.
+     * Вводится N натуральных чисел в диапазоне от 2 до 5 через пробел – баллы разработчика за определённый
+     * период времени.
+     * <p>
+     * Вычислить натуральное число (от 2 до 5) – его средний балл за текущий период
+     */
 
+    public static int averagePoint(int... arr) {
+        int res = 0;
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] >= 3 && arr[i] <= 5) {
+                res += arr[i];
+                count++;
+            }
+            if (arr[i] == 2 && i == arr.length - 1) {
+                res += arr[i];
+                count++;
+            }
+            if (arr[i] == 2 && i != arr.length - 1)
+                if (arr[i + 1] == 2) {
+                    res += arr[i];
+                    count++;
+                }
+        }
+        res = res / count;
+        return res;
+    }
 
+    /**
+     * group
+     * Дан массив строковых данных. Сформировать на основании данного массива новый массив, элементами которого
+     * будут новые строки, скрепленные между собой по принципу их равности. То есть необходимо реализовать
+     * алгоритм группировки строк по их равенству.
+     * Пример:
+     * Входные данные: [“aa”, “b”, “a”, “bb”, “aa”, “bb”]
+     * Выходные данные: [“aa aa”, “b”, “a”, “bb bb”]
+     */
+    //подсчитывать не нужно, для исходного массива создать булиан массив такого же размера как и исходный.
+    //Те элементы которые просмотренные за один проход отмечаются тру. На каждом проходе рассматривать
+    // только элементы фолс
+    public static ArrayList<ArrayList<String>> group3(String[] word) {
+        ArrayList<ArrayList<String>> res = new ArrayList<>();
+        boolean[] arrBoo = new boolean[word.length];
+        for (int i = 0; i < word.length; i++) {
+            if (!arrBoo[i]) {
+                ArrayList<String> arr = new ArrayList<>();
+                arr.add(word[i]);
+                //arrBoo[i] = true;
+                for (int j = i + 1; j < arrBoo.length; j++) {
+                    if (word[i].equals(word[j])) {
+                        arr.add(word[j]);
+                        arrBoo[j] = true;
+                    }
+                }
+                res.add(arr);
+            }
+        }
+        return res;
+    }
 
+    public static String[] group2(String[] arr) {
+        boolean[] arrBool = new boolean[arr.length];
+        Arrays.fill(arrBool, false);
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (arrBool[i])
+                continue;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] == arr[j]) {
+                    arrBool[j] = true;
+                }
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (!arrBool[i])
+                count++;
+        }
+        String[] res = new String[count];
+        int ind = 0;
+        for (int i = 0; i < arrBool.length; i++) {
+            String line = "";
+            boolean has = false;
+            for (int j = i; j < arrBool.length; j++) {
+                if (arrBool[i])
+                    continue;
+                if (!arrBool[i]) {
+                    if (arr[i].equals(arr[j])) {
+                        if (has)
+                            line += " ";
+                        has = true;
+                        line += arr[j];
+                    }
+                }
+            }
+            if (line.equals(""))
+                continue;
+            res[ind] = line;
+            ind++;
+        }
+        return res;
+    }
+
+    //использовать массив для хранения элементов
+    public static String[] group(String[] arr) {
+        int length = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[i].equals(arr[j]))
+                    count++;
+            }
+            if (count > 1)
+                length--;
+        }
+        String[] res = new String[length];
+        int[] ignor = new int[arr.length - length];
+        lable2:
+        {
+            for (int i = 0, ind = 0; i < arr.length - 1; i++) {
+                for (int j = i + 1; j < arr.length; j++) {
+                    if (arr[i].equals(arr[j])) {
+                        ignor[ind] = j;
+                        ind++;
+                        if ((arr.length - length) == ind)
+                            break lable2;
+                    }
+                }
+            }
+        }
+        int index = 0;
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            lable1:
+            {
+                for (int t = 0; t < ignor.length; t++) {
+                    if (i == ignor[t])
+                        break lable1;
+                }
+                for (int j = 0; j < arr.length; j++) {
+                    if (arr[i].equals(arr[j]))
+                        count++;
+                }
+                if (count == 1) {
+                    res[index] = arr[i];
+                    index++;
+                }
+                if (count > 1) {
+                    String buf = arr[i];
+                    for (int j = 0; j < count - 1; j++) {
+                        buf += " ";
+                        buf += arr[i];
+                    }
+                    res[index] = buf;
+                    index++;
+                }
+            }
+        }
+        return res;
+    }
+
+    //использовать ArrayList для накопления элементов
+    public static ArrayList<String> group1(String[] arr) {
+        int length = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            for (int j = i; j < arr.length; j++) {
+                if (arr[i].equals(arr[j]))
+                    count++;
+            }
+            if (count > 1)
+                length--;
+        }
+        ArrayList<String> res = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            int count = 0;
+            for (int j = i; j < arr.length; j++) {
+
+                if (arr[i].equals(arr[j]))
+                    count++;
+            }
+            if (count == 1)
+                res.add(arr[i]);
+            if (count > 1) {
+                String buf = arr[i];
+                for (int j = 0; j < count - 1; j++) {
+                    buf += " ";
+                    buf += arr[i];
+                }
+                res.add(buf);
+            }
+            if (res.size() == length)
+                return res;
+
+        }
+        return res;
+    }
+
+    /**
+     * debts
+     * Написать программу, которая по заданным распискам вычислит, сколько всего должен каждый джентльмен
+     * выплатить другим (или получить с других).
+     * <p>
+     * На вход методу подается двумерный массив D состоящий из K строк — количество долговых расписок
+     * и 3 столбцов, число N — количество джентльменов. D(i, 1) - номер джентльмена взявшего в долг;
+     * D(i, 2) - номер джентльмена давшего деньги; D(i, 3) - сумма.
+     * <p>
+     * Вычислить массив balance из N чисел — суммы, которые должны получить соответствующие джентльмены.
+     * balance(i) положительное число, если этот джентльмен должен получить деньги от других, отрицательное
+     * — если он должен отдать деньги другим
+     */
+    /*public static int[][] debts(int[][] arr, int n){
+        int[][] res = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            res[i][0] = i;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < res.length; j++) {
+                if (arr[i][0] == res[j][0]){
+                    res[j][1] -= arr[i][2];
+                }
+                if (arr[i][1] == res[j][0]){
+                    res[j][1] += arr[i][2];
+                }
+            }
+        }
+        return res;
+    }*/
+    public static int[] debts1(int[][] arr, int n) {
+        int[] res = new int[n + 1];
+        for (int ind = 0; ind < res.length; ind++) {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i][0] == ind) {
+                    res[ind] -= arr[i][2];
+                }
+                if ((arr[i][1] == ind)) {
+                    res[ind] += arr[i][2];
+                }
+            }
+        }
+        int[] out = new int[n];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = res[i + 1];
+        }
+        return out;
+    }
+
+    /**
+     * temperatureMinimum
+     * В течение k лет метеорологи вели наблюдения за n днями года. Для каждого из этих n дней укажите минимальную
+     * температуру, которая была в этот день за k лет наблюдений.
+     * <p>
+     * Данные подаются в виде двумерного массива из k строк и n столбцов. Далее идет k строк, i-я строка содержит
+     * n чисел: значения температур для n дней наблюдений i-го года.
+     * <p>
+     * Программа должна сформировать массив из n чисел: минимальное значение температуры для каждого из дней наблюдений
+     */
+    public static int[] temperatureMinimum(int[][] arr) {
+        int[] res = new int[arr[0].length];
+        for (int i = 0; i < res.length; i++) {
+            int min = Integer.MAX_VALUE;
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j][i] < min)
+                    min = arr[j][i];
+            }
+            res[i] = min;
+        }
+        return res;
+
+    }
+
+    /**
+     * countMaxLength
+     * Назовём длиной числа количество цифр в его десятичной записи. Например, длина числа 2017 равна 4,
+     * а длина числа 7 равна 1. Дан набор из N целых положительных чисел, каждое из которых меньше 108.
+     * Необходимо определить, числа какой длины чаще всего встречаются в данном наборе и сколько в нём
+     * чисел этой длины. Если числа разной длины встречаются одинаково часто (и чаще чем числа любой другой длины),
+     * нужно выбрать большую длину.
+     */
+
+    public static int[] maxSize(int... arr) {  //длинна, количество
+        int[] result = new int[2];
+        Map<Integer, Integer> res = new TreeMap<>();
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0, zn = 10, key = 1; /*j < 3*/ ; j++) {
+                if (arr[i] / zn <= 0) {
+                    if (!res.containsKey(key)) {
+                        res.put(key, 1);
+                        break;
+                    }
+                    res.put(key, res.get(key) + 1);
+                    break;
+                }
+                zn *= 10;
+                key++;
+            }
+        }
+        for (Map.Entry<Integer, Integer> para : res.entrySet()) {
+            if (para.getValue() >= result[1]) {
+                result[0] = para.getKey();
+                result[1] = para.getValue();
+            }
+        }
+        return result;
+    }
+
+    //через string и через while
+    public static int[] maxSize2(int... arr) {
+        int[] result = new int[2];
+        Map<Integer, Integer> res = new TreeMap<>();
+        int length = arr.length;
+        while (length>0) {
+                String line = String.valueOf(arr[length-1]);
+                if (!res.containsKey(line.length())) {
+                    res.put(line.length(), 1);
+                } else {
+                    res.put(line.length(), res.get(line.length()) + 1);
+                }
+            System.out.println(res);
+            length--;
+        }
+        for (Map.Entry<Integer, Integer> para : res.entrySet()) {
+            if (para.getValue() >= result[1]) {
+                result[0] = para.getKey();
+                result[1] = para.getValue();
+            }
+        }
+        return result;
+    }
 
 }
